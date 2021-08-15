@@ -10,11 +10,13 @@ import time
 class ServoFinger():
 
     def __init__(self, servoPin):
-        # GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setup(servoPin, GPIO.OUT)
         self.motor = GPIO.PWM(servoPin, 50)
+        self.motor.start(10)
+        time.sleep(0.5)
 
     def press_button(self):
-        self.motor.start(7.5)  # 7.5% duty cycle puts motor at 90%
+        self.motor.ChangeDutyCycle(5)
         time.sleep(0.5)
-        self.motor.ChangeDutyCycle(0)
+        self.motor.ChangeDutyCycle(10)
